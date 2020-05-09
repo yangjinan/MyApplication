@@ -11,29 +11,74 @@ import android.widget.TextView;
 
 import org.w3c.dom.Text;
 
-public class Work1Activity extends AppCompatActivity {
-
+public class Work1Activity extends AppCompatActivity  implements View.OnClickListener{
+    EditText num_1,num_2;
+    TextView textView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_work1);
-        //匿名内部类的方法
-        Button btn1 = findViewById(R.id.btn1);
-        btn1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String num1 = ((EditText)findViewById(R.id.num1)).getText().toString();
-                String num2 = ((EditText)findViewById(R.id.num2)).getText().toString();
+        setContentView(R.layout.activity_main2);
 
-                int num_1 = Integer.parseInt(num1);
-                int num_2 = Integer.parseInt(num2);
-                int count = num_1+num_2;
-
-                TextView textView = findViewById(R.id.text);
-                textView.setText(count+"");
-
+        num_1=(EditText) findViewById(R.id.num1);
+        num_2=(EditText) findViewById(R.id.num2);
+        final TextView result=(TextView) findViewById(R.id.result);
+        Button add=(Button)findViewById(R.id.add);
+        add.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View view){
+                String et1=num_1.getText().toString();
+                String et2=num_2.getText().toString();
+                float num1=Integer.valueOf(et1).floatValue();
+                float num2=Integer.valueOf(et2).floatValue();
+                num1=num1+num2;
+                et1=String.valueOf(num1);
+                result.setText(et1);
             }
         });
 
+        Button sub=(Button)findViewById(R.id.sub);
+        sub.setOnClickListener(new MyClickListener());
+
+        Button mul=(Button)findViewById(R.id.mul);
+        mul.setOnClickListener(this);
+    }
+
+    public class MyClickListener implements View.OnClickListener{
+        @Override
+        public void onClick(View view) {
+            num_1=(EditText) findViewById(R.id.num1);
+            num_2=(EditText) findViewById(R.id.num2);
+            final TextView result=(TextView) findViewById(R.id.result);
+            String et1=num_1.getText().toString();
+            String et2=num_2.getText().toString();
+            float num1=Integer.valueOf(et1).floatValue();
+            float num2=Integer.valueOf(et2).floatValue();
+            num1=num1-num2;
+            et1=String.valueOf(num1);
+            result.setText(et1);
+        }
+    }
+    public void onClick(View view) {
+        num_1=(EditText) findViewById(R.id.num1);
+        num_2=(EditText) findViewById(R.id.num2);
+        final TextView result=(TextView) findViewById(R.id.result);
+        String et1=num_1.getText().toString();
+        String et2=num_2.getText().toString();
+        float num1=Integer.valueOf(et1).floatValue();
+        float num2=Integer.valueOf(et2).floatValue();
+        num1=num1*num2;
+        et1=String.valueOf(num1);
+        result.setText(et1);
+    }
+    public void chu(View view) {
+        num_1=(EditText) findViewById(R.id.num1);
+        num_2=(EditText) findViewById(R.id.num2);
+        final TextView result=(TextView) findViewById(R.id.result);
+        String et1=num_1.getText().toString();
+        String et2=num_2.getText().toString();
+        float num1=Integer.valueOf(et1).floatValue();
+        float num2=Integer.valueOf(et2).floatValue();
+        num1=num1/num2;
+        et1=String.valueOf(num1);
+        result.setText(et1);
     }
 }
